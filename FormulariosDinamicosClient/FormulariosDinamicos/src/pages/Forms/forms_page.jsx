@@ -2,19 +2,39 @@ import { Card } from "reactstrap";
 import { useEffect, useState } from "react";
 import { GetForms } from "../../service/FormsService";
 import ListButtons from "./components/list_buttons";
+import DynamicForm from "./components/form";
 
-export default function FormsPage(){
-    const [forms, setForms] = useState([])
+export default function FormsPage() {
+    const [forms, setForms] = useState([]);
+    const [selectedForm, setSelectedForm] = useState(null);
 
     useEffect(() => {
-        console.log(GetForms())
-        setForms(GetForms())
-    }, [])
+        const fetchForms = async () => {
+            const formsData = await GetForms();
+            setForms(formsData.data);
+        };
 
+        fetchForms();
+    }, []);
+
+    const handleButtonClick = (index) => {
+        setSelectedForm(index);
+    };
+
+    
 
     return (
         <>
-        <Card style={{ height: "400px", width: "400px" }}><ListButtons forms = {forms}/></Card>
+            <Card style={{ height: "400px", width: "400px" }}>
+                { selectedForm !== null ? (
+                    console.log(forms[selectedForm]),
+                    <DynamicForm currentForm={forms[selectedForm]} />
+                ) : (
+                    <h3>Select a form</h3>
+                )
+                }
+                <ListButtons forms={forms} onButtonClick={handleButtonClick}/>
+            </Card>
         </>
     );
 }

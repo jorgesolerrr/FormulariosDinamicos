@@ -12,6 +12,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder => builder.AllowAnyOrigin()
+                          .AllowAnyHeader()
+                          .AllowAnyMethod());
+});
                 // .AddJsonOptions(options =>
                 // {
                 //     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
@@ -40,6 +47,8 @@ builder.Services.AddScoped<ITypeRepository, TypeService>();
 
 
 var app = builder.Build();
+
+app.UseCors("AllowAll");
 
 app.UseDefaultFiles();
 app.UseStaticFiles();

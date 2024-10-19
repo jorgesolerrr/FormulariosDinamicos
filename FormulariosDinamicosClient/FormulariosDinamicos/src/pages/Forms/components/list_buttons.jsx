@@ -1,37 +1,51 @@
-import { Card, Row, Col } from "reactstrap";
+/* eslint-disable react/prop-types */
+import { Card, Row } from "reactstrap";
 import FormButton from "./button";
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
-const ListButtons = ({ forms }) => {
-  const [formNull, setFormNull] = useState([]);
+const ListButtons = ({ forms, onButtonClick }) => {
+    const [formNull, setFormNull] = useState([]);
 
-  useEffect(() => {
-    if (forms !== null) {
-      setFormNull(forms);
-    }
-  }, [forms]);
+    useEffect(() => {
+        if (forms !== null) {
+            setFormNull(forms);
+        }
+    }, [forms]);
 
-  return (
-    <Card
-      style={{ height: "200px", width: "200px" }}
-      className="ml-5 mr-5 mt-5 mb-5"
-    >
-      <Col>
-        {formNull !== null ? (
-          formNull.map((item, index) => (
-            <div key={index} style={{ margin: "5px" }}>
-              <FormButton name={item.name} />
-            </div>
-          ))
-        ) : (
-          <></>
-        )}
-        <div style={{ margin: "5px" }}>
-          <FormButton name="Otro" />
-        </div>
-      </Col>
-    </Card>
-  );
+    return (
+        <Card
+            style={{ height: "auto", width: "auto" }}
+            className="ml-5 mr-5 mt-5 mb-5"
+        >
+            <Row
+                style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                    position: "absolute",
+                    bottom: 0,
+                }}
+            >
+                {formNull !== null ? (
+                    formNull.map((item, index) => (
+                        <div key={index} style={{ margin: "5px" }}>
+                            <FormButton
+                                index={index}
+                                name={item.name}
+                                onClick={onButtonClick}
+                            />
+                        </div>
+                    ))
+                ) : (
+                    <></>
+                )}
+            </Row>
+        </Card>
+    );
+};
+ListButtons.propTypes = {
+    forms: PropTypes.array,
 };
 
 export default ListButtons;

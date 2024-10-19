@@ -1,21 +1,19 @@
 
-const API_URL = 'http://localhost:8080/api/Forms';
+const API_URL = 'http://localhost:8080/api/form';
 
 
 
 
 
-export async function GetFormData() {
+export async function GetForms() {
     try {
         const response = await fetch(API_URL);
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        const formData = await response.json();
-        return formData;
+        const data = await response.json();
+        console.log(data);
+        return data;
     } catch (error) {
-        console.error('There has been a problem with your fetch operation:', error);
-        throw error;
+        console.error('Error fetching forms:', error);
+        return null;
     }
 }
 
@@ -39,6 +37,15 @@ export async function PostFormData(data) {
     }
 }
 
+export async function GetForm(id) {
+    try {
+        const response = await fetch(`${API_URL}/${id}`);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching form:', error);
+        return null;
+    }
+}
 
 
- 
