@@ -18,6 +18,7 @@ export default function FormsPage() {
     }, []);
 
     const handleButtonClick = (index) => {
+        console.log("TOQUE EL BOTON")
         setSelectedForm(index);
     };
 
@@ -25,7 +26,7 @@ export default function FormsPage() {
 
     return (
         <>
-            <Card style={{ height: "400px", width: "400px" }}>
+            <Card style={{ height: "300px", width: "400px" }}>
                 { selectedForm !== null ? (
                     console.log(forms[selectedForm]),
                     <DynamicForm currentForm={forms[selectedForm]} />

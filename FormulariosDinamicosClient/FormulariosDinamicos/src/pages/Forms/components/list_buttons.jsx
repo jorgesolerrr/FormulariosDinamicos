@@ -23,8 +23,8 @@ const ListButtons = ({ forms, onButtonClick }) => {
                     display: "flex",
                     flexDirection: "row",
                     flexWrap: "wrap",
-                    position: "absolute",
                     bottom: 0,
+                    justifyContent: 'center', alignItems: 'center'
                 }}
             >
                 {formNull !== null ? (
