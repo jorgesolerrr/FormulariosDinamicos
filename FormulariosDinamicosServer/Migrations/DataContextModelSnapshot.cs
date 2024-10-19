@@ -23,28 +23,28 @@ namespace FormulariosDinamicos.Migrations
 
             modelBuilder.Entity("FormulariosDinamicosServer.Models.FieldType", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("FieldTypes");
                 });
 
             modelBuilder.Entity("FormulariosDinamicosServer.Models.Form", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -54,18 +54,18 @@ namespace FormulariosDinamicos.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Forms");
                 });
 
             modelBuilder.Entity("FormulariosDinamicosServer.Models.FormField", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("FieldTypeId")
                         .HasColumnType("int");
@@ -81,7 +81,7 @@ namespace FormulariosDinamicos.Migrations
                     b.Property<bool>("isRequired")
                         .HasColumnType("tinyint(1)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("FieldTypeId");
 
@@ -92,11 +92,11 @@ namespace FormulariosDinamicos.Migrations
 
             modelBuilder.Entity("FormulariosDinamicosServer.Models.FormValue", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("FormId")
                         .HasColumnType("int");
@@ -105,7 +105,7 @@ namespace FormulariosDinamicos.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("FormId");
 

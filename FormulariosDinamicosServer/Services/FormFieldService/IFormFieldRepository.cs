@@ -2,16 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FormulariosDinamicosServer.Models;
+using FormulariosDinamicosServer.DTOs;
 
 namespace FormulariosDinamicosServer.Services.FormFieldService
 {
     public interface IFormFieldRepository
     {
-        void AddField(FormField newField);
-        void RemoveField(int id);
-        Task<Result<FormField, Error>> GetFieldById(int id);
-        Task<Result<List<FormField>, Error>> GetAllFields();
-        Task<Result<FormField, Error>> UpdateField(FormField updatedField);
+        Task<Response<bool>> AddFormField(FormFieldDTO newFormField);
+        Task<Response<bool>> RemoveFormField(int id);
+        Task<Response<FormFieldDTO>> UpdateFormField(int id, FormFieldUpdateDTO updatedFormField);
     }
 }

@@ -18,14 +18,14 @@ namespace FormulariosDinamicos.Migrations
                 name: "FieldTypes",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FieldTypes", x => x.id);
+                    table.PrimaryKey("PK_FieldTypes", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -33,7 +33,7 @@ namespace FormulariosDinamicos.Migrations
                 name: "Forms",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -42,7 +42,7 @@ namespace FormulariosDinamicos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Forms", x => x.id);
+                    table.PrimaryKey("PK_Forms", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -50,7 +50,7 @@ namespace FormulariosDinamicos.Migrations
                 name: "Fields",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     FormId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "varchar(250)", maxLength: 250, nullable: false)
@@ -60,18 +60,18 @@ namespace FormulariosDinamicos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Fields", x => x.id);
+                    table.PrimaryKey("PK_Fields", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Fields_FieldTypes_FieldTypeId",
                         column: x => x.FieldTypeId,
                         principalTable: "FieldTypes",
-                        principalColumn: "id",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Fields_Forms_FormId",
                         column: x => x.FormId,
                         principalTable: "Forms",
-                        principalColumn: "id",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -80,7 +80,7 @@ namespace FormulariosDinamicos.Migrations
                 name: "FormValues",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     FormId = table.Column<int>(type: "int", nullable: false),
                     Value = table.Column<string>(type: "longtext", nullable: false)
@@ -88,12 +88,12 @@ namespace FormulariosDinamicos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FormValues", x => x.id);
+                    table.PrimaryKey("PK_FormValues", x => x.Id);
                     table.ForeignKey(
                         name: "FK_FormValues_Forms_FormId",
                         column: x => x.FormId,
                         principalTable: "Forms",
-                        principalColumn: "id",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
